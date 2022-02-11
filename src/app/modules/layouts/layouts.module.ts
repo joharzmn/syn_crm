@@ -12,6 +12,7 @@ import { SideMenuComponent } from './layout-a/side-menu/side-menu.component';
 import { LoginComponent } from '../login/login/login.component';
 import { LoginModule } from '../login/login.module';
 import { UserToolBarComponent } from './layout-a/user-tool-bar/user-tool-bar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { UserToolBarComponent } from './layout-a/user-tool-bar/user-tool-bar.com
     LayoutsRoutingModule,
     RouterModule,
     AngularMaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
   exports: [
     RouterModule

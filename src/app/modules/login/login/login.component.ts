@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@ang
 import {
   AbstractControl,
 } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email])
   });
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
+  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.form.reset();
