@@ -1,0 +1,13 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="ctn">
+  <div>
+    <button mat-button [matMenuTriggerFor]="menu" class="user-name-button">
+      <mat-icon>account_circle</mat-icon>
+      <span class="mat-h3" style="margin-left:8px;">James Tayi</span>
+      <mat-icon>expand_more</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" style="width:100%;">
+      <button mat-menu-item>Profile</button>
+      <button mat-menu-item >Log Out</button>
+    </mat-menu>
+  </div>
+</div>

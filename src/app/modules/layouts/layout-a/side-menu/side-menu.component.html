@@ -1,0 +1,87 @@
+<mat-toolbar><span class="mat-h2" style="margin-top:0px;margin-bottom:0px;">Main Menu</span></mat-toolbar>
+<div>
+  <mat-nav-list>
+    <mat-list-item [routerLink]="'/dashboard'" class="border-bottom">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-icon class="icon-indent">dashboard</mat-icon>
+        Dashboard
+      </div>
+    </mat-list-item>
+    <mat-list-item [routerLink]="'/jobs'" class="border-bottom">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-icon class="icon-indent">assignment</mat-icon>
+        Jobs
+      </div>
+    </mat-list-item>
+    <mat-list-item [routerLink]="'/jobs'" class="border-bottom">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-icon class="icon-indent">people</mat-icon>
+        Candidates
+      </div>
+    </mat-list-item>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header style="padding-left:0px;">
+          <mat-panel-title>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-icon class="icon-indent">insights</mat-icon>
+              Analytics
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list-item [routerLink]="'/featurea'">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="section-indent">
+            &#8594;&nbsp;&nbsp;Users
+          </div>
+        </mat-list-item>
+        <mat-list-item [routerLink]="'/splash'">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="section-indent">
+            &#8594;&nbsp;&nbsp;Splash Page
+          </div>
+        </mat-list-item>
+        <mat-list-item [routerLink]="'/login'">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="section-indent">
+            &#8594;&nbsp;&nbsp;Login Page
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            &#8594;&nbsp;&nbsp;Sub-Page Name
+          </div>
+        </mat-list-item>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header style="padding-left:0px;">
+          <mat-panel-title>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-icon class="icon-indent">settings</mat-icon>
+              Administration
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list-item [routerLink]="'/featurea'">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="section-indent">
+            &#8594;&nbsp;&nbsp;Users
+          </div>
+        </mat-list-item>
+        <mat-list-item [routerLink]="'/splash'">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="section-indent">
+            &#8594;&nbsp;&nbsp;Splash Page
+          </div>
+        </mat-list-item>
+        <mat-list-item [routerLink]="'/login'">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="section-indent">
+            &#8594;&nbsp;&nbsp;Login Page
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            &#8594;&nbsp;&nbsp;Sub-Page Name
+          </div>
+        </mat-list-item>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-nav-list>
+</div>

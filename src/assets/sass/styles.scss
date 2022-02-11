@@ -1,0 +1,75 @@
+@use '@angular/material' as mat;
+@use './base//variables' as v;
+@import '~@angular/material/theming';
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+
+@include mat-core();
+
+$purple-light-theme-primary: mat-palette($mat-purple);
+$purple-light-theme-accent: mat-palette($mat-amber, A200, A100, A400);
+$purple-light-theme-warn: mat-palette($mat-red);
+
+
+$purple-light-theme: mat-light-theme($purple-light-theme-primary,$purple-light-theme-accent,$purple-light-theme-warn);
+// $purple-dark-theme: mat-dark-theme($purple-light-theme-primary,$purple-light-theme-accent,$purple-light-theme-warn);
+
+$purple-dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $purple-light-theme-primary,
+      accent: $purple-light-theme-accent,
+      warn: $purple-light-theme-warn,
+      background: black
+    ),
+  )
+);
+
+@include angular-material-theme($purple-light-theme);
+
+
+
+// @mixin get_main-menu_toolbar($theme) {
+
+//   $background: map-get($theme, background);
+//   $foreground: map-get($theme, foreground);
+//   .main-menu_toolbar {
+//     color: mat-color($foreground, text);
+//     background-color: mat-color($background, card);
+//   }
+// }
+
+// @include get_main-menu_toolbar($purple-dark-theme);
+
+// @mixin get_main-menu_nav-list($theme) {
+
+//   $background: map-get($theme, background);
+//   $foreground: map-get($theme, foreground);
+//   .main-menu_nav-list {
+//     color: mat-color($foreground, text);
+//     background-color: mat-color($background, card);
+//   };
+
+// }
+
+// @include get_main-menu_nav-list($purple-dark-theme);
+
+
+// @mixin get_main-menu_nav-list-item($theme) {
+
+//   $background: map-get($theme, background);
+//   $foreground: map-get($theme, foreground);
+//   .main-menu_nav-list-item{
+//     color: white;
+//     background-color: mat-color($background, card);
+//   }
+
+// }
+
+// @include get_main-menu_nav-list-item($purple-dark-theme);
+

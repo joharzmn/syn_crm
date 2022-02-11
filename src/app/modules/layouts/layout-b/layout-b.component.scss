@@ -1,0 +1,6 @@
+@import '../../../../assets/sass//base//variables';
+
+::ng-deep body{
+  background-color: $primary-color;
+  // background-image: url('../../../../assets//images//login.jpg');
+}

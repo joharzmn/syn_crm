@@ -1,0 +1,24 @@
+@import '../../../../assets//sass/base/variables';
+
+mat-sidenav-container{
+  height: 100%;
+  // flex: 1;
+  widtH:100%;
+}
+
+
+mat-sidenav{
+  width:260px;
+  height: 100%;
+  background-color: $side-menu-black;
+}
+
+.mat-drawer.mat-drawer-push {
+  background-color: $side-menu-black;
+}
+
+mat-sidenav-content{
+
+    width:100%;
+    height: 100%;
+}

@@ -1,0 +1,85 @@
+
+
+<!-- <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <div class="form-group">
+        <label for="email">Name</label>
+        <input
+            formControlName="email"
+            id="email"
+            type="text"
+            class="form-control">
+        <div *ngIf="f['email'].touched && f['email'].invalid" class="alert alert-danger">
+            <div *ngIf="f['email'].errors && f['email'].errors['required']">Name is required.</div>
+
+
+            <div *ngIf="f['email'].errors && f['email'].errors['minlength']">Name should be 3 character.</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input
+            formControlName="email"
+            id="email"
+            type="text"
+            class="form-control">
+        <div *ngIf="f['email'].touched && f['email'].invalid" class="alert alert-danger">
+            <div *ngIf="f['email'].errors && f['email'].errors['required']">Email is required.</div>
+            <div *ngIf="f['email'].errors && f['email'].errors['email']">Please, enter valid email address.</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="body">Body</label>
+        <textarea
+            formControlName="body"
+            id="body"
+            type="text"
+            class="form-control">
+        </textarea>
+        <div *ngIf="f['body'].touched && f['body'].invalid" class="alert alert-danger">
+            <div *ngIf="f['body'].errors && f['body'].errors['required']">Body is required.</div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" [disabled]="form.invalid" type="submit">Submit</button>
+</form> -->
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+<div class="wrapper">
+  <div class="brand-title"><img src="../../../../assets/images/synergy-logo2.png" class="logo" /></div>
+  <mat-card>
+    <mat-card-title><mat-icon class="icon-display">lock</mat-icon></mat-card-title>
+    <div class="spacer"></div>
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+      <mat-form-field >
+        <mat-label>Email</mat-label>
+        <input matInput
+        formControlName="email"
+        id="email"
+        type="text"
+        class="form-control">
+        <mat-error *ngIf="f['email'].errors && f['email'].errors['required']">Please enter an email.</mat-error>
+        <mat-error *ngIf="f['email'].errors && f['email'].errors['email']">Please enter a valid email.</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput
+        formControlName="password"
+        id="password"
+        type="password">
+        <mat-error *ngIf="f['password'].errors && f['password'].errors['required']">Password is required.</mat-error>
+        <mat-error *ngIf="f['password'].errors && f['password'].errors['minlength']">Password should be at least 8 characters long.</mat-error>
+      </mat-form-field>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div><mat-checkbox class="example-margin">Remember me</mat-checkbox></div><div><button mat-button color="primary">Forgot Password?</button></div>
+      </div>
+      <button mat-flat-button color="primary" style="margin-top:16px;">Login</button>
+      <div><button mat-button color="primary" (click)="signUp()">Create new account</button></div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+</form>

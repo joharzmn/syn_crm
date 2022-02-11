@@ -1,0 +1,62 @@
+@import '../../../../assets//sass//base/variables';
+
+
+.spinner-wrapper{
+  position:fixed;
+  left:calc(50% - 100px);
+  // width: 400px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.wrapper{
+  position:fixed;
+  left:calc(50% - 200px);
+  width: 400px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+.logo{
+  display:block;
+  height:108px;
+  width: 130px;
+}
+
+.brand-row{
+  display:flex;
+  justify-content: center;
+  text-align: center;
+
+}
+
+mat-card {
+  width:100%;
+  box-sizing: border-box;
+  margin-top:32px;
+}
+
+mat-card-title {
+
+  width:100%;
+  text-align: center;
+}
+
+mat-card-content{
+  padding-top:32px;
+}
+
+mat-form-field{
+  width:100%;
+}
+
+button{
+  width:100%;
+}
+
+.brand-title{
+  width:100%;
+  text-align: center;
+  display:flex;
+  justify-content: center;
+}

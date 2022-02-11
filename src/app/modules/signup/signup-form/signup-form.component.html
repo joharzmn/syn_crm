@@ -1,0 +1,52 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="wrapper">
+    <!-- <div class="brand-title"><img src="../../../../assets/images/synergy-logo2.png" class="logo" /></div> -->
+    <mat-card>
+      <mat-card-title>
+        <mat-icon class="icon-display">account_circle</mat-icon>
+      </mat-card-title>
+      <div class="spacer"></div>
+      <mat-card-title>Create new account</mat-card-title>
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Username/Email</mat-label>
+          <input matInput formControlName="email" id="email" type="text" class="form-control">
+          <mat-error *ngIf="f['email'].errors && f['email'].errors['required']">Please enter an email.</mat-error>
+          <mat-error *ngIf="f['email'].errors && f['email'].errors['email']">Please enter a valid email.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" id="password" type="password">
+          <mat-error *ngIf="f['password'].errors && f['password'].errors['required']">Password is required.</mat-error>
+          <mat-error *ngIf="f['password'].errors && f['password'].errors['minlength']">Password should be at least 8
+            characters long.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Confirm Password</mat-label>
+          <input matInput formControlName="confirmPassword" id="confirmPassword" type="confirmPassword">
+          <mat-error *ngIf="f['confirmPassword'].errors && f['confirmPassword'].errors['required']">Confirm password is
+            required.</mat-error>
+          <mat-error *ngIf="f['confirmPassword'].errors && f['confirmPassword'].errors['minlength']">Password should be
+            at least 8 characters long.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" id="firstName" type="firstName">
+          <mat-error *ngIf="f['firstName'].errors && f['firstName'].errors['required']">First name is required.
+          </mat-error>
+          <mat-error *ngIf="f['firstName'].errors && f['firstName'].errors['minlength']">First name should be at least 2
+            characters long.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" id="lastName" type="lastName">
+          <mat-error *ngIf="f['lastName'].errors && f['lastName'].errors['required']">Last name is required.</mat-error>
+          <mat-error *ngIf="f['lastName'].errors && f['lastName'].errors['minlength']">Last name should be at least 2
+            characters long.</mat-error>
+        </mat-form-field>
+        <button mat-flat-button color="primary" style="margin-top:16px;">Create new account</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</form>
