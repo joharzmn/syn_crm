@@ -97,6 +97,7 @@ $custom-theme: create-wonky-theme($custom-theme-primary, $custom-theme-accent, $
 
 .icon-indent{
   padding-right:8px;
+  transform: scale(.85);
 }
 
 mat-expansion-panel-header {

@@ -6,10 +6,10 @@ import {
   AbstractControl,
 } from '@angular/forms';
 
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/modules/services/user.service';
 
 // import { AuthService } from 'src/app/services/auth.service';
-// import { CreateUserData} from './../../../models/create-user-data.model';
+import { CreateUserData} from './../../../models/create-user-data.model';
 
 @Component({
   selector: 'app-signup-form',
@@ -27,7 +27,7 @@ export class SignupFormComponent implements OnInit {
 
   });
 
-  constructor(private formBuilder: FormBuilder, private router: Router, userServic: UserService) {}
+  constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
     this.form.reset();
@@ -38,27 +38,38 @@ export class SignupFormComponent implements OnInit {
     return this.form.controls;
   }
 
-  submit() {
+  async submit() {
 
     if(!this.form.invalid){
       console.log('form is valid');
-      // let cUserData = {} as CreateUserData;
+      let cUserData = {} as CreateUserData;
 
-      // cUserData.firstName = this.form.controls['firstName'].value;
-      // cUserData.lastName = this.form.controls['lastName'].value;
-      // cUserData.userName = this.form.controls['email'].value;
-      // cUserData.password = this.form.controls['password'].value;
+      cUserData.firstName = this.form.controls['firstName'].value;
+      cUserData.lastName = this.form.controls['lastName'].value;
+      cUserData.userName = this.form.controls['email'].value;
+      cUserData.password = this.form.controls['password'].value;
 
-      let cVal = {
-        firstName: this.form.controls['firstName'].value,
-        lastName: this.form.controls['lastName'].value,
-        userName: this.form.controls['email'].value,
-        password: this.form.controls['password'].value
-      }
+      // let cVal = {
+      //   firstName: this.form.controls['firstName'].value,
+      //   lastName: this.form.controls['lastName'].value,
+      //   userName: this.form.controls['email'].value,
+      //   password: this.form.controls['password'].value
+      // }
 
       console.log(this.form.value);
 
-      // this.userService.createUser(cVal);
+      let createdUser = await this.userService.createUser(cUserData).then((response)=>{
+        let status = response.status;
+        // status=400;
+       if(status==201){
+        this.router.navigate(['signup/confirmed']);
+       }
+       else{
+        this.router.navigate(['signup/notconfirmed']);
+       }
+      });
+
+
     }
     else{
       console.log('form is inValid')

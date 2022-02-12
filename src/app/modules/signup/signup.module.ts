@@ -8,13 +8,15 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { SignupConfirmComponent } from './signup-confirm/signup-confirm.component';
+import { NoSignupConfirmComponent } from './no-signup-confirm/no-signup-confirm.component';
 
 
 @NgModule({
   declarations: [
     SignupComponent,
     SignupFormComponent,
-    SignupConfirmComponent
+    SignupConfirmComponent,
+    NoSignupConfirmComponent
   ],
   imports: [
     CommonModule,

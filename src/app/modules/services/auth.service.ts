@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { Subject } from 'rxjs'
 import { Router} from '@angular/router';
 
-import { CreateUserData } from '../models/create-user-data.model'
+import { CreateUserData } from '../../models/create-user-data.model'
 
 @Injectable({
   providedIn: 'root'

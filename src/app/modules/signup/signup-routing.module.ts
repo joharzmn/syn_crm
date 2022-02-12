@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
 import { SignupFormComponent } from '../signup/signup-form/signup-form.component';
 import { SignupConfirmComponent } from './signup-confirm/signup-confirm.component';
+import { NoSignupConfirmComponent } from './no-signup-confirm/no-signup-confirm.component';
 
 const routes: Routes = [
   {
@@ -10,12 +11,16 @@ const routes: Routes = [
     component: SignupComponent,
     children: [
       {
-        path: 'signupform',
+        path: '',
         component: SignupFormComponent,
       },
       {
-        path: 'signupconfirm',
+        path: 'confirmed',
         component: SignupConfirmComponent,
+      },
+      {
+        path: 'notconfirmed',
+        component: NoSignupConfirmComponent,
       }
     ]
   }
