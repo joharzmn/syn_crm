@@ -1,25 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
 import { NgForm } from "@angular/forms";
-import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
-import {
-  AbstractControl,
-} from '@angular/forms';
+import { BehaviorSubject, observable } from 'rxjs';
+import { FormBuilder, FormGroup, FormControl, Validators, FormArray, AbstractControl} from '@angular/forms';
 
-import { UserService } from 'src/app/modules/services/user.service';
-
-// import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 import { CreateUserData} from './../../../models/create-user-data.model';
+import { HttpClient } from '@angular/common/http';
+
+import {ValidationErrors, AsyncValidatorFn} from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { delay, map } from 'rxjs/operators';
+
+import { UsernameValidator } from '../../../validators/user-name.validator';
 
 @Component({
   selector: 'app-signup-form',
   templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.scss']
 })
+
 export class SignupFormComponent implements OnInit {
 
+
   form = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required, Validators.email],[UsernameValidator.createValidator(this.userService)]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
     firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -79,4 +84,10 @@ export class SignupFormComponent implements OnInit {
     // this.router.navigate(['signup/signupconfirm']);
   }
 
+
+
+
+
 }
+
+

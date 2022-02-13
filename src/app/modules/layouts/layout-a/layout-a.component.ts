@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from "@angular/router"
 import { fadeAnimation } from 'src/app/animations/fade-animation';
-import { PageService } from '../../services/page.service';
+import { PageService } from '../../../services/page.service';
 
 @Component({
   selector: 'app-layout-a',
