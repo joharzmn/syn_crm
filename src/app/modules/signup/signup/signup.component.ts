@@ -6,7 +6,6 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -24,7 +23,7 @@ export class SignupComponent implements OnInit {
 
   // });
 
-  constructor(private http: HttpClient, private userService: UserService) {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CreateUserData } from "../../models/create-user-data.model";
 import { environment } from '../../../environments/environment';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import axios from 'axios';
 
 @Injectable({
@@ -22,6 +22,16 @@ export class UserService {
   public async createUser(cUserData: CreateUserData){
     let uri = this.baseUri + '/api/users';
     return axios.post(uri, cUserData);
-    
+  }
+
+  public async checkIfUsernameExists(username: string): Promise<boolean> {
+    const uri = this.baseUri + '/api/users/' + username;
+
+    try {
+      const resp = await axios.get(uri);
+      return resp.data.data.username ? true : false
+    } catch (error) {
+      return false;
+    }
   }
 }

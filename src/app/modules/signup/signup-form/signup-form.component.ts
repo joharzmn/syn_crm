@@ -10,6 +10,7 @@ import { UserService } from 'src/app/modules/services/user.service';
 
 // import { AuthService } from 'src/app/services/auth.service';
 import { CreateUserData} from './../../../models/create-user-data.model';
+import { UsernameValidator } from 'src/app/validators/username-validator';
 
 @Component({
   selector: 'app-signup-form',
@@ -19,7 +20,11 @@ import { CreateUserData} from './../../../models/create-user-data.model';
 export class SignupFormComponent implements OnInit {
 
   form = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl(
+      '', 
+      [Validators.required, Validators.email],
+      [UsernameValidator.createValidator(this.userService)]
+    ),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
     firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),

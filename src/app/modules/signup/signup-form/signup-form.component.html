@@ -13,6 +13,7 @@
           <input matInput formControlName="email" id="email" type="text" class="form-control">
           <mat-error *ngIf="f['email'].errors && f['email'].errors['required']">Please enter an email.</mat-error>
           <mat-error *ngIf="f['email'].errors && f['email'].errors['email']">Please enter a valid email.</mat-error>
+          <mat-error *ngIf="f['email'].hasError('usernameAlreadyExists')">Username already <strong>exists</strong></mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Password</mat-label>
