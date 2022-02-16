@@ -6,6 +6,8 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { LoginUserData } from 'src/app/models/login-user-data.model';
+import { UserService } from 'src/app/services/user.service';
 
 
 
@@ -21,7 +23,9 @@ export class LoginComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email])
   });
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient) {}
+  isSubmit: boolean = false;
+
+  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private userService: UserService) {}
 
   ngOnInit(): void {
     this.form.reset();
@@ -32,8 +36,36 @@ export class LoginComponent implements OnInit {
     return this.form.controls;
   }
 
-  submit(){
-    console.log(this.form.value);
+  async submit(){
+    this.isSubmit = true;
+
+    if (!this.form.invalid) {
+      let cUserData = {} as LoginUserData;
+      cUserData.userName = this.f['email'].value;
+      cUserData.password = this.f['password'].value;
+
+      let authenticate = await this.userService.authenticate(cUserData).then((response)=>{
+        if (response.isError) {
+          if (response.msg === 'userNameNotFound') {
+            this.f['email'].setErrors({
+              notFound: true
+            });
+          }
+          else if (response.msg === 'passwordDoesNotMatch') {
+            this.f['password'].setErrors({
+              wrong: true
+            });
+          }
+        }
+        else {
+          this.router.navigate(['/']);
+        }
+      });
+    }
+    else {
+      console.log('form is inValid')
+      console.log(this.form.value);
+    }
   }
   signUp(){
     this.router.navigate(['/signup/signupform']);

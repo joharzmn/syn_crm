@@ -3,6 +3,7 @@ import { CreateUserData } from "../models/create-user-data.model";
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import axios from 'axios';
+import { LoginUserData } from '../models/login-user-data.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,20 @@ export class UserService {
   public async createUser(cUserData: CreateUserData){
     let uri = this.baseUri + '/api/users';
     return axios.post(uri, cUserData);
-
   }
+
+  public async authenticate(cUserData: LoginUserData) {
+    let uri = this.baseUri + '/api/users/authenticate';
+    try {
+      const resp = await axios.post(uri, cUserData);
+      return resp.data;
+    }
+    catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
   public async userExists(username: string){
     let uri = this.baseUri + "api/users/"+username;
     return axios.get(uri);
