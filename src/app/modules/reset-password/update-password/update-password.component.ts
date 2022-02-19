@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -16,8 +16,9 @@ export class UpdatePasswordComponent implements OnInit {
   });
 
   token: string | null = null;
+  apiResponse: any = null;
   
-  constructor(private userService: UserService, private routeURL: ActivatedRoute,) { }
+  constructor(private userService: UserService, private routeURL: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.form.reset();
@@ -45,7 +46,13 @@ export class UpdatePasswordComponent implements OnInit {
 
       await this.userService.updatePassword(password, this.token).then((response)=>{
         console.log("RESPONSE:", response);
-        // let status = response.status;
+        this.apiResponse = response;
+
+        if (!this.apiResponse['isError']) {
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 3000);
+        }
       });
     }
     else {

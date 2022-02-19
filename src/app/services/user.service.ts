@@ -61,8 +61,13 @@ export class UserService {
         email: username
       });
       console.log("Reset password response:", resp);
+      return resp.data;
     } catch (error) {
       console.error("Reset password error:", error);
+      return {
+        isError: true,
+        msg: "Error connecting to API"
+      }
     }
   }
 
@@ -75,8 +80,13 @@ export class UserService {
         token
       });
       console.log("Reset password response:", resp);
+      return resp.data;
     } catch (error) {
       console.error("Reset password error:", error);
+      return {
+        isError: true,
+        msg: "Error connecting to API"
+      }
     }
   }
   // public async userExists(username: string){

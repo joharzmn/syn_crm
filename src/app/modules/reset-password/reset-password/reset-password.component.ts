@@ -14,6 +14,8 @@ export class ResetPasswordComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
   });
 
+  apiResponse: any = null;
+
   constructor(private http: HttpClient, private userService: UserService) { }
 
   ngOnInit(): void {
@@ -31,7 +33,7 @@ export class ResetPasswordComponent implements OnInit {
 
       await this.userService.resetPassword(email).then((response)=>{
         console.log("RESPONSE:", response);
-        // let status = response.status;
+        this.apiResponse = response;
       });
     }
     else {
