@@ -73,10 +73,16 @@
         <mat-error *ngIf="f['password'].errors && f['password'].errors['required']">Password is required.</mat-error>
         <mat-error *ngIf="f['password'].errors && f['password'].errors['minlength']">Password should be at least 8 characters long.</mat-error>
       </mat-form-field>
+
+      <mat-error *ngIf="isSubmit && form.invalid">
+        <span *ngIf="f['email'].errors && f['email'].errors['notFound']">Username not found!</span>
+        <span *ngIf="f['password'].errors && f['password'].errors['wrong']">Password is wrong!</span>
+      </mat-error>
+
       <div fxLayout="row" fxLayoutAlign="space-between center">
-      <div><mat-checkbox class="example-margin">Remember me</mat-checkbox></div><div><button mat-button color="primary">Forgot Password?</button></div>
+        <div><mat-checkbox class="example-margin">Remember me</mat-checkbox></div><div><button mat-button color="primary">Forgot Password?</button></div>
       </div>
-      <button mat-flat-button color="primary" style="margin-top:16px;">Login</button>
+      <button mat-flat-button color="primary" style="margin-top:16px;" [disabled]="form.invalid">Login</button>
       <div><button mat-button color="primary" (click)="signUp()">Create new account</button></div>
     </mat-card-content>
   </mat-card>
