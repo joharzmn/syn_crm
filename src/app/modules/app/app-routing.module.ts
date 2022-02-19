@@ -47,7 +47,7 @@ const routes: Routes = [
       {
         path: 'reset',
         data: { animation: 'reset' },
-        component: ResetPasswordComponent,
+        // component: ResetPasswordComponent,
         loadChildren: () => import('../reset-password/reset-password.module').then(m => m.ResetPasswordModule)
       },
     ]

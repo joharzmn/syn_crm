@@ -39,6 +39,33 @@ export class UserService {
       return false;
     }
   }
+
+  public async resetPassword(username: string): Promise<any> {
+    const uri = this.baseUri + '/api/mail/reset-password';
+
+    try {
+      const resp = await axios.post(uri, {
+        email: username
+      });
+      console.log("Reset password response:", resp);
+    } catch (error) {
+      console.error("Reset password error:", error);
+    }
+  }
+
+  public async updatePassword(password: string, token: string): Promise<any> {
+    const uri = this.baseUri + '/api/mail/update-password';
+
+    try {
+      const resp = await axios.post(uri, {
+        password,
+        token
+      });
+      console.log("Reset password response:", resp);
+    } catch (error) {
+      console.error("Reset password error:", error);
+    }
+  }
   // public async userExists(username: string){
   //   let uri = this.baseUri + "api/users/"+username;
   //   let response = await axios.get(uri);

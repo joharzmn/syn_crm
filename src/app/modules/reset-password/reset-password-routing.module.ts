@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
 
 const routes: Routes = [
   {
@@ -10,7 +11,20 @@ const routes: Routes = [
       {
         path: 'reset',
         component: ResetPasswordComponent
-      }
+      },
+    ]
+  },
+  {
+    path: 'update-password',
+    children: [
+      {
+        path: '',
+        component: UpdatePasswordComponent
+      },
+      {
+        path: ':token',
+        component: UpdatePasswordComponent
+      },
     ]
   }
 ];
