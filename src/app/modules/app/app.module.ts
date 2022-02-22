@@ -9,6 +9,9 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { LayoutsModule } from '../layouts/layouts.module'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../../services/auth-interceptor.service';
+import { AuthGuard } from 'src/app/services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

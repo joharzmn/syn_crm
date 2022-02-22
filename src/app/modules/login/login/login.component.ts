@@ -8,6 +8,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { LoginUserData } from 'src/app/models/login-user-data.model';
 import { UserService } from 'src/app/services/user.service';
+import { AuthService } from '../../../services/auth.service';
 
 
 
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   isSubmit: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private userService: UserService) {}
+  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private userService: UserService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.form.reset();
@@ -38,8 +39,9 @@ export class LoginComponent implements OnInit {
 
   async submit(){
     this.isSubmit = true;
+    console.log('this.isSubmit is: ', this.isSubmit);
 
-    if (!this.form.invalid) {
+    if (!this.form.invalid && this.isSubmit) {
       let cUserData = {} as LoginUserData;
       cUserData.userName = this.f['email'].value;
       cUserData.password = this.f['password'].value;
@@ -58,7 +60,14 @@ export class LoginComponent implements OnInit {
           }
         }
         else {
-          this.router.navigate(['/']);
+          const expiresInDuration = response.expiresIn;
+          console.log('expires in: ', expiresInDuration);
+          this.authService.setToken(response.token);
+          console.log('response is: ', response);
+          this.authService.setAuthStatusListenerNextValue(true);
+          this.authService.setIsAuth(true);
+          console.log('about to go to dashboard');
+          this.router.navigate(['/dashboard']);
         }
       });
     }
@@ -66,9 +75,13 @@ export class LoginComponent implements OnInit {
       console.log('form is inValid')
       console.log(this.form.value);
     }
+
   }
   signUp(){
-    this.router.navigate(['/signup/signupform']);
+    this.isSubmit = false;
+    console.log('this.isSubmit is: ', this.isSubmit);
+    this.router.navigate(['/signup']);
+    console.log('going to signup');
   }
 
 }

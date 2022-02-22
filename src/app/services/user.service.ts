@@ -4,27 +4,33 @@ import { environment } from '../../environments/environment';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import axios from 'axios';
 import { LoginUserData } from '../models/login-user-data.model';
+import { Router} from '@angular/router';
+
+import { Subject } from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private baseUri = environment.api_url;
-  constructor(private http: HttpClient) { }
+  private token = '';
+  private authStatusListener = new Subject<boolean>();
+  private user = {
+    username: '',
+    password: '',
+    firstname: '',
+    lastname: ''
+  };
+  constructor(private router: Router, private http: HttpClient) { }
 
-  // public async createUser(cUserData: CreateUserData){
-  //   let uri = this.baseUri + '/api/users';
-  //   // uri="http://localhost:5000/api/users/jt4 9256@gmail.com";
-  //   console.log('calling uri: ', uri);
-  //   console.log('with cUserData: ', cUserData);
-  //   return await this.http.post<any>(uri, cUserData);
-  // }
-
-  public async createUser(cUserData: CreateUserData){
-    let uri = this.baseUri + '/api/users';
-    return axios.post(uri, cUserData);
+ //new
+  public setUser(user:any){
+    this.user = user;
   }
-
+  public getUser(){
+    return this.user;
+  }
+  
   public async authenticate(cUserData: LoginUserData) {
     let uri = this.baseUri + '/api/users/authenticate';
     try {
@@ -36,6 +42,30 @@ export class UserService {
       return null;
     }
   }
+
+  public getToken(){
+    let t = localStorage.getItem('token');
+    console.log('getToke() is: ', t)
+    return t;
+  }
+
+  public tokenExpired(token:any) {
+
+    try{
+      const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+      console.log('expiry is: ', expiry);
+      return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+    }
+    catch(err){
+      return true;
+    }
+ }
+  public async createUser(cUserData: CreateUserData){
+    let uri = this.baseUri + '/api/users';
+    return axios.post(uri, cUserData);
+  }
+
+
 
   public async userExists(username: string){
     let uri = this.baseUri + "api/users/"+username;
@@ -89,6 +119,26 @@ export class UserService {
       }
     }
   }
+
+  public logout(){
+    this.clearAuthData();
+    let _user = {
+     username: '',
+     password: '',
+     firstname: '',
+     lastname: ''
+     };
+     this.setUser(_user);
+    this.router.navigate(['/loggedout']);
+  }
+private  saveAuthData(token: string, expirationData: Date){
+  localStorage.setItem('token', this.token);
+  localStorage.setItem('expiration', expirationData.toISOString());
+
+}
+   private clearAuthData(){
+   localStorage.removeItem('token');
+ }
   // public async userExists(username: string){
   //   let uri = this.baseUri + "api/users/"+username;
   //   let response = await axios.get(uri);
