@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   ngOnInit(): void {
+    // this.loadData();
+  }
+
+  loadData() {
+    this.http.get("localhost:5000/api/mail").subscribe(data => {
+      alert("Success");
+    }, error => {
+      alert("Error");
+    });
   }
 
 }
