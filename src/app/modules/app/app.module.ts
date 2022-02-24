@@ -11,7 +11,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../../services/auth-interceptor.service';
-import { AuthGuard } from 'src/app/services/auth-guard.service';
+import { AuthGuard } from '../../services/auth-guard.service';
+
 
 @NgModule({
   declarations: [
