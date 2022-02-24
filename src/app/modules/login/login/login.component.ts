@@ -60,13 +60,8 @@ export class LoginComponent implements OnInit {
           }
         }
         else {
-          const expiresInDuration = response.expiresIn;
-          console.log('expires in: ', expiresInDuration);
-          this.authService.setToken(response.token);
-          console.log('response is: ', response);
-          this.authService.setAuthStatusListenerNextValue(true);
-          this.authService.setIsAuth(true);
-          console.log('about to go to dashboard');
+          console.log(response);
+          this.authService.setAuthData(response.user, response.token);
           this.router.navigate(['/dashboard']);
         }
       });
