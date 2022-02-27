@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 @use './base//variables' as v;
 @import '~@angular/material/theming';
-
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

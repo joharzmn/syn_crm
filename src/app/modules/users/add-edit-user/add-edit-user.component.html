@@ -1,0 +1,55 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div fxLayout="column">
+    <div>
+      <h1>Edit User</h1>
+    </div>
+    <div>
+
+      <mat-form-field>
+        <mat-label>Username/Email</mat-label>
+        <input matInput formControlName="email" id="email" type="text" class="form-control">
+        <mat-error *ngIf="f['email'].errors && f['email'].errors['required']">Please enter an email.</mat-error>
+        <mat-error *ngIf="f['email'].errors && f['email'].errors['email']">Please enter a valid email.</mat-error>
+        <mat-error *ngIf="f['email'].hasError('usernameAlreadyExists')">Username already <strong>exists</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" id="firstName" type="firstName">
+        <mat-error *ngIf="f['firstName'].errors && f['firstName'].errors['required']">First name is required.
+        </mat-error>
+        <mat-error *ngIf="f['firstName'].errors && f['firstName'].errors['minlength']">First name should be at least 2
+          characters long.</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" id="lastName" type="lastName">
+        <mat-error *ngIf="f['lastName'].errors && f['lastName'].errors['required']">Last name is required.</mat-error>
+        <mat-error *ngIf="f['lastName'].errors && f['lastName'].errors['minlength']">Last name should be at least 2
+          characters long.</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Phone</mat-label>
+        <input matInput formControlName="phone" id="phone" type="phone">
+        <mat-error *ngIf="f['phone'].errors && f['phone'].errors['required']">Phone is required.</mat-error>
+        <mat-error *ngIf="f['phone'].errors && f['phone'].errors['minlength']">Please enter a valid phone number.
+          characters long.</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <input matInput formControlName="status" id="status" type="status">
+        <mat-error *ngIf="f['status'].errors && f['status'].errors['required']">Confirm password is
+          required.</mat-error>
+        <mat-error *ngIf="f['status'].errors && f['status'].errors['minlength']">Password should be
+          at least 8 characters long.</mat-error>
+      </mat-form-field>
+
+    </div>
+    <div>
+      <div fxLayout="row" fxLayoutAlign="end">
+        <div> <button mat-flat-button style="margin-top:16px;">Cancel</button></div>
+        <div> <button mat-flat-button color="primary" style="margin-top:16px;">Save</button></div>
+      </div>
+    </div>
+  </div>
+</form>

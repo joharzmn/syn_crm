@@ -37,7 +37,11 @@ export class AuthService {
   getUserToken(): string | null {
     return localStorage.getItem("token");
   }
-
+  public getToken() {
+    let t = localStorage.getItem('token');
+    console.log('getToke() is: ', t);
+    return t;
+  }
   // Remove the user info data fro local storage when user logs out.
   logout() {
     localStorage.removeItem("token");

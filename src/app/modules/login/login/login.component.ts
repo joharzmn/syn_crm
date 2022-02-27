@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.form.reset();
+    this.autoAuthUser();
   }
 
 
@@ -78,5 +79,11 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/signup']);
     console.log('going to signup');
   }
-
+  autoAuthUser() {
+    const token = this.authService.getToken();
+    if (!token) {
+      return;
+    }
+    this.router.navigate(['/dashboard']);
+  }
 }

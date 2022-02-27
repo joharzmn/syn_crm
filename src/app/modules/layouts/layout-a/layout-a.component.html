@@ -9,7 +9,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <app-toolbar></app-toolbar>
-    <div [@fadeAnimation]="prepareRoute(outlet)">
+    <div [@fadeAnimation]="prepareRoute(outlet)" class='content'>
       <router-outlet #outlet="outlet"></router-outlet>
     </div>
   </mat-sidenav-content>

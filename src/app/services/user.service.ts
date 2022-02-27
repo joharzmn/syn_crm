@@ -29,12 +29,12 @@ export class UserService {
     ) {}
 
   //new
-  public setUser(user: any) {
-    this.user = user;
-  }
-  public getUser() {
-    return this.user;
-  }
+  // public setUser(user: any) {
+  //   this.user = user;
+  // }
+  // public getUser() {
+  //   return this.user;
+  // }
 
   public async authenticate(cUserData: LoginUserData) {
     let uri = this.baseUri + '/api/users/authenticate';
@@ -47,21 +47,27 @@ export class UserService {
     }
   }
 
-  public getToken() {
-    let t = localStorage.getItem('token');
-    console.log('getToke() is: ', t);
-    return t;
+  // public getToken() {
+  //   let t = localStorage.getItem('token');
+  //   console.log('getToke() is: ', t);
+  //   return t;
+  // }
+
+  // public tokenExpired(token: any) {
+  //   try {
+  //     const expiry = JSON.parse(atob(token.split('.')[1])).exp;
+  //     console.log('expiry is: ', expiry);
+  //     return Math.floor(new Date().getTime() / 1000) >= expiry;
+  //   } catch (err) {
+  //     return true;
+  //   }
+  // }
+
+  public async getUsers(){
+    let uri = this.baseUri + '/api/users';
+    return  this.http.get(uri);
   }
 
-  public tokenExpired(token: any) {
-    try {
-      const expiry = JSON.parse(atob(token.split('.')[1])).exp;
-      console.log('expiry is: ', expiry);
-      return Math.floor(new Date().getTime() / 1000) >= expiry;
-    } catch (err) {
-      return true;
-    }
-  }
   public async createUser(cUserData: CreateUserData) {
     let uri = this.baseUri + '/api/users';
     return axios.post(uri, cUserData);
