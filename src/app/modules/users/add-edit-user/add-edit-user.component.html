@@ -3,14 +3,13 @@
     <div>
       <h1>Edit User</h1>
     </div>
-    <div>
-
+    <div *ngIf="action != 'Delete'; else deleteTemplate">
       <mat-form-field>
         <mat-label>Username/Email</mat-label>
-        <input matInput formControlName="email" id="email" type="text" class="form-control">
-        <mat-error *ngIf="f['email'].errors && f['email'].errors['required']">Please enter an email.</mat-error>
-        <mat-error *ngIf="f['email'].errors && f['email'].errors['email']">Please enter a valid email.</mat-error>
-        <mat-error *ngIf="f['email'].hasError('usernameAlreadyExists')">Username already <strong>exists</strong>
+        <input matInput formControlName="username" id="email" type="text" class="form-control">
+        <mat-error *ngIf="f['username'].errors && f['username'].errors['required']">Please enter an email.</mat-error>
+        <mat-error *ngIf="f['username'].errors && f['username'].errors['username']">Please enter a valid email.</mat-error>
+        <mat-error *ngIf="f['username'].hasError('usernameAlreadyExists')">Username already <strong>exists</strong>
         </mat-error>
       </mat-form-field>
       <mat-form-field>
@@ -51,10 +50,15 @@
         </select>
       </mat-form-field>
     </div>
+
+    <ng-template #deleteTemplate>
+      Sure to delete <b>{{local_data.name}}</b>?
+    </ng-template>
+
     <div>
       <div fxLayout="row" fxLayoutAlign="end">
         <div> <button mat-flat-button style="margin-top:16px;" (click)="closeDialog()">Cancel</button></div>
-        <div> <button mat-flat-button color="primary" style="margin-top:16px;">Save</button></div>
+        <div> <button mat-flat-button color="primary" style="margin-top:16px;" (click)="doAction()">Save</button></div>
       </div>
     </div>
   </div>

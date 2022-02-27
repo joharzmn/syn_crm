@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { AddEditUserComponent } from '../../../modules/users/add-edit-user/add-edit-user.component';
 export interface UserElement {
+  id: number;
   username: string;
   firstName: string;
   lastName: string;
@@ -22,7 +23,24 @@ export interface UserElement {
 export class GridComponent implements AfterViewInit {
   isLoading = false;
 
-  ELEMENT_DATA: UserElement[] = [];
+  ELEMENT_DATA: UserElement[] = [
+    {
+      id: 1,
+      firstName: "Test",
+      lastName: "1",
+      phone: "0303",
+      username: "test1@gmail.com",
+      status: "active"
+    },
+    {
+      id: 2,
+      firstName: "Test",
+      lastName: "2",
+      phone: "0303",
+      username: "test2@gmail.com",
+      status: "active"
+    }
+  ];
   displayedColumns: string[] = ['username', 'firstName', 'lastName', 'phone', 'status','action'];
   dataSource = new MatTableDataSource<UserElement>(this.ELEMENT_DATA);
 
@@ -82,14 +100,26 @@ export class GridComponent implements AfterViewInit {
 
 
   }
-  addRowData(row_obj: { name: any; }){
-
-
+  addRowData(row_obj: UserElement){
+    var d = new Date();
+    this.dataSource.data.push(row_obj);
+    this.dataSource._updateChangeSubscription();
   }
-  updateRowData(row_obj: any){
-
+  updateRowData(row_obj: UserElement){
+    this.dataSource.data.forEach((value: UserElement)=>{
+      if(value.id === row_obj.id){
+        value.firstName = row_obj.firstName;
+        value.lastName = row_obj.lastName;
+        value.username = row_obj.username;
+        value.phone = row_obj.phone;
+        value.status = row_obj.status;
+      }
+      return true;
+    });
   }
-  deleteRowData(row_obj: any){
-
+  deleteRowData(row_obj: UserElement){
+    this.dataSource.data = this.dataSource.data.filter((value: UserElement)=>{
+      return value.id != row_obj.id;
+    });
   }
 }

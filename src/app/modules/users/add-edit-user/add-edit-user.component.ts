@@ -20,12 +20,12 @@ export class AddEditUserComponent {
   action:string;
   local_data:any;
   form = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    id: new FormControl(0),
+    username: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required, Validators.minLength(8)]),
     status: new FormControl('', [Validators.required]),
     firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
     lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
-
   });
   constructor(private userService: UserService,
     public dialogRef: MatDialogRef<AddEditUserComponent>,
@@ -34,17 +34,18 @@ export class AddEditUserComponent {
     // console.log(data);
     this.local_data = {...data};
     this.action = this.local_data.action;
-    console.log('local data is: ', this.local_data);
+
     // this.form.controls['email'].value = this.local_data.email;;
-   this.form.get('email')?.setValue(this.local_data.username);
-   this.form.get('firstName')?.setValue(this.local_data.firstName);
-   this.form.get('lastName')?.setValue(this.local_data.lastName);
-   this.form.get('phone')?.setValue(this.local_data.phone);
-   this.form.get('status')?.setValue(this.local_data.status);
+    this.form.get('id')?.setValue(this.local_data.id);
+    this.form.get('username')?.setValue(this.local_data.username);
+    this.form.get('firstName')?.setValue(this.local_data.firstName);
+    this.form.get('lastName')?.setValue(this.local_data.lastName);
+    this.form.get('phone')?.setValue(this.local_data.phone);
+    this.form.get('status')?.setValue(this.local_data.status);
   }
 
   doAction(){
-    this.dialogRef.close({event:this.action,data:this.local_data});
+    this.dialogRef.close({event:this.action, data:this.form.value});
   }
   get f(){
     return this.form.controls;
@@ -53,4 +54,8 @@ export class AddEditUserComponent {
     this.dialogRef.close({event:'Cancel'});
   }
   async submit() {}
+
+  saveUser() {
+
+  }
 }
