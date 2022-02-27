@@ -20,9 +20,9 @@ export class AddEditUserComponent {
   action:string;
   local_data:any;
   form = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email],[UsernameValidator.createValidator(this.userService)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required, Validators.minLength(8)]),
-    status: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    status: new FormControl('', [Validators.required]),
     firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
     lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
 

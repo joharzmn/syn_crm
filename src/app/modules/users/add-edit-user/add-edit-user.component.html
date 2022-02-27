@@ -35,19 +35,25 @@
         <mat-error *ngIf="f['phone'].errors && f['phone'].errors['minlength']">Please enter a valid phone number.
           characters long.</mat-error>
       </mat-form-field>
-      <mat-form-field>
+      <!-- <mat-form-field>
         <mat-label>Status</mat-label>
         <input matInput formControlName="status" id="status" type="status">
         <mat-error *ngIf="f['status'].errors && f['status'].errors['required']">Confirm password is
           required.</mat-error>
         <mat-error *ngIf="f['status'].errors && f['status'].errors['minlength']">Password should be
           at least 8 characters long.</mat-error>
+      </mat-form-field> -->
+      <mat-form-field appearance="fill">
+        <mat-label>Status</mat-label>
+        <select matNativeControl required formControlName="status" id="status">
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
       </mat-form-field>
-
     </div>
     <div>
       <div fxLayout="row" fxLayoutAlign="end">
-        <div> <button mat-flat-button style="margin-top:16px;">Cancel</button></div>
+        <div> <button mat-flat-button style="margin-top:16px;" (click)="closeDialog()">Cancel</button></div>
         <div> <button mat-flat-button color="primary" style="margin-top:16px;">Save</button></div>
       </div>
     </div>
